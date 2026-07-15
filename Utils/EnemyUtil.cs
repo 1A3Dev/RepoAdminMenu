@@ -123,6 +123,9 @@ namespace RepoAdminMenu.Utils {
                 EnemyParent parent = obj.GetComponent<EnemyParent>();
                 if (parent != null) {
                     parent.SetupDone = true;
+                    if (!LevelGenerator.Instance.Generated) {
+                        LevelGenerator.Instance.EnemiesSpawned--;
+                    }
                     obj.GetComponentInChildren<Enemy>().EnemyTeleported(position);
                     EnemyDirector.instance.FirstSpawnPointAdd(parent);
                 }
